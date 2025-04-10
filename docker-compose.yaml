@@ -32,5 +32,18 @@ services:
       --password=postgres
       update
 
+  profile-microservice:
+    build:
+      dockerfile: profile/Dockerfile
+    container_name: education_profile
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/education_db
+    command: uvicorn main:app --host 0.0.0.0 --reload
+
 volumes:
   postgres_data:
