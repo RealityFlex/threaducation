@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Include all changelog files -->
+    <include file="changelogs/001-tag-type.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/002-profile-type.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/003-user.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/004-subject.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/005-education-program.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/006-learning-plan.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/007-change-request.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/008-tag.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/009-post.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/010-like.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/011-tags-for-post.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/012-tags-for-user.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/013-test-data.xml" relativeToChangelogFile="true"/>
+    
+</databaseChangeLog>

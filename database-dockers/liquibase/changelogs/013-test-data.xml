@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="013-insert-test-data" author="liquibase">
+        <!-- Insert Profile Types -->
+        <insert tableName="profile_type">
+            <column name="name">Student</column>
+        </insert>
+        <insert tableName="profile_type">
+            <column name="name">Teacher</column>
+        </insert>
+        <insert tableName="profile_type">
+            <column name="name">Admin</column>
+        </insert>
+
+        <!-- Insert Tag Types -->
+        <insert tableName="tag_type">
+            <column name="tag_type_id">1</column>
+            <column name="name">Skill</column>
+        </insert>
+        <insert tableName="tag_type">
+            <column name="tag_type_id">2</column>
+            <column name="name">Interest</column>
+        </insert>
+        <insert tableName="tag_type">
+            <column name="tag_type_id">3</column>
+            <column name="name">Topic</column>
+        </insert>
+
+        <!-- Insert Tags -->
+        <insert tableName="tag_table">
+            <column name="name">Programming</column>
+            <column name="tag_type_id">1</column>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="name">Database</column>
+            <column name="tag_type_id">1</column>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="name">Machine Learning</column>
+            <column name="tag_type_id">2</column>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="name">Web Development</column>
+            <column name="tag_type_id">2</column>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="name">Education</column>
+            <column name="tag_type_id">3</column>
+        </insert>
+
+        <!-- Insert Users -->
+        <insert tableName="user_table">
+            <column name="login">john_doe</column>
+            <column name="password">$2a$10$Yk2LKBLqe3hIp5SZ9pBzseAUmFDZc.KfYfbFGaZ5YsF/HuaON3mAW</column>
+            <column name="type_id">1</column>
+            <column name="name">John Doe</column>
+            <column name="description">Computer Science student</column>
+            <column name="rating">4</column>
+        </insert>
+        <insert tableName="user_table">
+            <column name="login">jane_smith</column>
+            <column name="password">$2a$10$qEr7ZvUJJn1hXxvUYHPE9.Fc0K/78qpS5xYmvATNAZfOYCJuMnZLO</column>
+            <column name="type_id">2</column>
+            <column name="name">Jane Smith</column>
+            <column name="description">Professor of Database Systems</column>
+            <column name="rating">5</column>
+        </insert>
+        <insert tableName="user_table">
+            <column name="login">admin_user</column>
+            <column name="password">$2a$10$tDDMdV2H4HbOtY9/xD1rTedGt3W3l.NuD8QbXQBnGO.BxI7gPNrTS</column>
+            <column name="type_id">3</column>
+            <column name="name">System Admin</column>
+            <column name="description">System administrator</column>
+            <column name="rating">4</column>
+        </insert>
+
+        <!-- Insert Subjects -->
+        <insert tableName="subject_table">
+            <column name="name">Database Systems</column>
+            <column name="description">Introduction to database design and SQL</column>
+        </insert>
+        <insert tableName="subject_table">
+            <column name="name">Programming Fundamentals</column>
+            <column name="description">Basic programming concepts and algorithms</column>
+        </insert>
+        <insert tableName="subject_table">
+            <column name="name">Web Technologies</column>
+            <column name="description">HTML, CSS, JavaScript and web frameworks</column>
+        </insert>
+        <insert tableName="subject_table">
+            <column name="name">Software Engineering</column>
+            <column name="description">Software development methodologies and practices</column>
+        </insert>
+
+        <!-- Insert Education Programs -->
+        <insert tableName="education_program_table">
+            <column name="user_id">2</column>
+            <column name="code">CS-2025</column>
+            <column name="name">Computer Science Bachelor</column>
+            <column name="time">240</column>
+        </insert>
+        <insert tableName="education_program_table">
+            <column name="user_id">2</column>
+            <column name="code">WD-2025</column>
+            <column name="name">Web Development Certificate</column>
+            <column name="time">120</column>
+        </insert>
+
+        <!-- Insert Learning Plans -->
+        <insert tableName="learning_plan_table">
+            <column name="program_id">1</column>
+            <column name="subject_id">1</column>
+            <column name="hours">60</column>
+            <column name="semester">2</column>
+        </insert>
+        <insert tableName="learning_plan_table">
+            <column name="program_id">1</column>
+            <column name="subject_id">2</column>
+            <column name="hours">90</column>
+            <column name="semester">1</column>
+        </insert>
+        <insert tableName="learning_plan_table">
+            <column name="program_id">1</column>
+            <column name="subject_id">4</column>
+            <column name="hours">45</column>
+            <column name="semester">3</column>
+        </insert>
+        <insert tableName="learning_plan_table">
+            <column name="program_id">2</column>
+            <column name="subject_id">3</column>
+            <column name="hours">80</column>
+            <column name="semester">1</column>
+        </insert>
+
+        <!-- Insert Change Requests -->
+        <insert tableName="change_request_table">
+            <column name="description">Please add more hours to the Database Systems course</column>
+            <column name="from_id">1</column>
+            <column name="program_id">1</column>
+        </insert>
+
+        <!-- Insert Posts -->
+        <insert tableName="post_table">
+            <column name="content">Just finished my first database project!</column>
+            <column name="user_id">1</column>
+        </insert>
+        <insert tableName="post_table">
+            <column name="content">Anyone interested in joining a study group for Programming Fundamentals?</column>
+            <column name="user_id">1</column>
+        </insert>
+        <insert tableName="post_table">
+            <column name="content">Great work! What database technology did you use?</column>
+            <column name="child_id">1</column>
+            <column name="user_id">2</column>
+        </insert>
+
+        <!-- Insert Likes -->
+        <insert tableName="like_table">
+            <column name="post_id">1</column>
+            <column name="user_id">2</column>
+        </insert>
+        <insert tableName="like_table">
+            <column name="post_id">2</column>
+            <column name="user_id">3</column>
+        </insert>
+
+        <!-- Insert Tags for Posts -->
+        <insert tableName="tags_for_post_table">
+            <column name="post_id">1</column>
+            <column name="tag_id">2</column>
+        </insert>
+        <insert tableName="tags_for_post_table">
+            <column name="post_id">2</column>
+            <column name="tag_id">1</column>
+        </insert>
+
+        <!-- Insert Tags for Users -->
+        <insert tableName="tags_for_user_table">
+            <column name="user_id">1</column>
+            <column name="tag_id">1</column>
+        </insert>
+        <insert tableName="tags_for_user_table">
+            <column name="user_id">1</column>
+            <column name="tag_id">2</column>
+        </insert>
+        <insert tableName="tags_for_user_table">
+            <column name="user_id">2</column>
+            <column name="tag_id">2</column>
+        </insert>
+        <insert tableName="tags_for_user_table">
+            <column name="user_id">2</column>
+            <column name="tag_id">3</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="010-create-like-table" author="liquibase">
+        <createTable tableName="like_table">
+            <column name="like_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_like"/>
+            </column>
+            <column name="post_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_like_post" referencedTableName="post_table" referencedColumnNames="post_id"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_like_user" referencedTableName="user_table" referencedColumnNames="user_id"/>
+            </column>
+        </createTable>
+        
+        <addUniqueConstraint 
+            tableName="like_table" 
+            columnNames="post_id, user_id" 
+            constraintName="uk_like_post_user"/>
+    </changeSet>
+
+</databaseChangeLog>
