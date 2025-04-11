@@ -9,4 +9,5 @@
 ---
 #### Картинки
 для своих - картинка схемы текущей бд
-![alt text](https://github.com/RealityFlex/threaducation/blob/main/database_for_hack.png)
+![alt text](https://github.com/RealityFlex/threaducation/blob/main/etc/database_for_hack.png)
+
