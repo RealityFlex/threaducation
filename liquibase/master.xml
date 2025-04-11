@@ -3,21 +3,27 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <!-- Include all changelog files -->
-    <include file="changelogs/001-tag-type.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/002-profile-type.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/003-user.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/004-subject.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/005-education-program.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/006-learning-plan.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/007-change-request.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/008-tag.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/009-post.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/010-like.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/011-tags-for-post.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/012-tags-for-user.xml" relativeToChangelogFile="true"/>
-    <include file="changelogs/013-test-data.xml" relativeToChangelogFile="true"/>
+    <!-- Tables creation -->
+    <include file="changelog/001-profile-type-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002-user-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/003-post-type-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/004-post-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/005-tag-type-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/006-tag-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/007-tags-for-post-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/008-tags-for-user-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/009-like-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/010-education-type-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/011-education-program-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/012-subject-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/013-learning-plan-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/014-change-request-table.xml" relativeToChangelogFile="true"/>
     
+    <!-- Foreign Key Constraints -->
+    <include file="changelog/015-foreign-keys.xml" relativeToChangelogFile="true"/>
+    
+    <!-- Test Data -->
+    <include file="changelog/016-test-data.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

@@ -6,19 +6,20 @@ services:
     container_name: education_db
     environment:
       POSTGRES_DB: education_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: threaducation_user
+      POSTGRES_PASSWORD: threads_t0_masses
     ports:
       - "5432:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U threaducation_user -d education_db"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   liquibase:
+    container_name: liquibase
     image: liquibase/liquibase:4.23
     depends_on:
       postgres:
@@ -28,8 +29,8 @@ services:
     command: >
       --changelog-file=master.xml
       --url=jdbc:postgresql://postgres:5432/education_db
-      --username=postgres
-      --password=postgres
+      --username=threaducation_user
+      --password=threads_t0_masses
       update
 
   profile-microservice:
@@ -42,7 +43,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/education_db
+      - DATABASE_URL=postgresql://threaducation_user:threads_t0_masses@postgres:5432/education_db
     command: uvicorn main:app --host 0.0.0.0 --reload
 
 volumes:

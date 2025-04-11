@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="015" author="ant">
+        <!-- User to Profile Type relationships -->
+        <addForeignKeyConstraint baseTableName="user_table" baseColumnNames="type_id" 
+                                 constraintName="fk_user_profile_type" 
+                                 referencedTableName="profile_type_table" 
+                                 referencedColumnNames="type_id"/>
+        
+        <!-- Post to Post Type relationships -->
+        <addForeignKeyConstraint baseTableName="post_table" baseColumnNames="post_type_id" 
+                                 constraintName="fk_post_post_type" 
+                                 referencedTableName="post_type_table" 
+                                 referencedColumnNames="post_type_id"/>
+        
+        <!-- Post to User relationships -->
+        <addForeignKeyConstraint baseTableName="post_table" baseColumnNames="user_id" 
+                                 constraintName="fk_post_user" 
+                                 referencedTableName="user_table" 
+                                 referencedColumnNames="user_id"/>
+        
+        <!-- Tag to Tag Type relationships -->
+        <addForeignKeyConstraint baseTableName="tag_table" baseColumnNames="tag_type_id" 
+                                 constraintName="fk_tag_tag_type" 
+                                 referencedTableName="tag_type_table" 
+                                 referencedColumnNames="tag_type_id"/>
+        
+        <!-- Tags for Post relationships -->
+        <addForeignKeyConstraint baseTableName="tags_for_post_table" baseColumnNames="post_id" 
+                                 constraintName="fk_tags_for_post_post" 
+                                 referencedTableName="post_table" 
+                                 referencedColumnNames="post_id"/>
+        <addForeignKeyConstraint baseTableName="tags_for_post_table" baseColumnNames="tag_id" 
+                                 constraintName="fk_tags_for_post_tag" 
+                                 referencedTableName="tag_table" 
+                                 referencedColumnNames="tag_id"/>
+        
+        <!-- Tags for User relationships -->
+        <addForeignKeyConstraint baseTableName="tags_for_user_table" baseColumnNames="user_id" 
+                                 constraintName="fk_tags_for_user_user" 
+                                 referencedTableName="user_table" 
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="tags_for_user_table" baseColumnNames="tag_id" 
+                                 constraintName="fk_tags_for_user_tag" 
+                                 referencedTableName="tag_table" 
+                                 referencedColumnNames="tag_id"/>
+        
+        <!-- Like relationships -->
+        <addForeignKeyConstraint baseTableName="like_table" baseColumnNames="post_id" 
+                                 constraintName="fk_like_post" 
+                                 referencedTableName="post_table" 
+                                 referencedColumnNames="post_id"/>
+        <addForeignKeyConstraint baseTableName="like_table" baseColumnNames="user_id" 
+                                 constraintName="fk_like_user" 
+                                 referencedTableName="user_table" 
+                                 referencedColumnNames="user_id"/>
+        
+        <!-- Education Program relationships -->
+        <addForeignKeyConstraint baseTableName="education_program_table" baseColumnNames="user_id" 
+                                 constraintName="fk_education_program_user" 
+                                 referencedTableName="user_table" 
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="education_program_table" baseColumnNames="education_type_id" 
+                                 constraintName="fk_education_program_education_type" 
+                                 referencedTableName="education_type_table" 
+                                 referencedColumnNames="education_type_id"/>
+        
+        <!-- Learning Plan relationships -->
+        <addForeignKeyConstraint baseTableName="learning_plan_table" baseColumnNames="program_id" 
+                                 constraintName="fk_learning_plan_program" 
+                                 referencedTableName="education_program_table" 
+                                 referencedColumnNames="program_id"/>
+        <addForeignKeyConstraint baseTableName="learning_plan_table" baseColumnNames="subject_id" 
+                                 constraintName="fk_learning_plan_subject" 
+                                 referencedTableName="subject_table" 
+                                 referencedColumnNames="subject_id"/>
+        
+        <!-- Change Request relationships -->
+        <addForeignKeyConstraint baseTableName="change_request_table" baseColumnNames="from_id" 
+                                 constraintName="fk_change_request_user" 
+                                 referencedTableName="user_table" 
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="change_request_table" baseColumnNames="program_id" 
+                                 constraintName="fk_change_request_program" 
+                                 referencedTableName="education_program_table" 
+                                 referencedColumnNames="program_id"/>
+    </changeSet>
+</databaseChangeLog>

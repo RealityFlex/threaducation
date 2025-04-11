@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="016" author="ant">
+        <!-- Profile Types -->
+        <insert tableName="profile_type_table">
+            <column name="type_id" value="1"/>
+            <column name="name" value="Student"/>
+        </insert>
+        <insert tableName="profile_type_table">
+            <column name="type_id" value="2"/>
+            <column name="name" value="Teacher"/>
+        </insert>
+        <insert tableName="profile_type_table">
+            <column name="type_id" value="3"/>
+            <column name="name" value="Admin"/>
+        </insert>
+
+        <!-- Users -->
+        <insert tableName="user_table">
+            <column name="user_id" value="1"/>
+            <column name="login" value="john.doe"/>
+            <column name="password" value="password123"/>
+            <column name="type_id" value="1"/>
+            <column name="name" value="John Doe"/>
+            <column name="image_link" value="/images/john.jpg"/>
+            <column name="description" value="Computer Science student"/>
+            <column name="rating" value="4.5"/>
+        </insert>
+        <insert tableName="user_table">
+            <column name="user_id" value="2"/>
+            <column name="login" value="jane.smith"/>
+            <column name="password" value="password456"/>
+            <column name="type_id" value="2"/>
+            <column name="name" value="Jane Smith"/>
+            <column name="image_link" value="/images/jane.jpg"/>
+            <column name="description" value="Math Professor"/>
+            <column name="rating" value="4.8"/>
+        </insert>
+        <insert tableName="user_table">
+            <column name="user_id" value="3"/>
+            <column name="login" value="admin.user"/>
+            <column name="password" value="admin123"/>
+            <column name="type_id" value="3"/>
+            <column name="name" value="Admin User"/>
+            <column name="image_link" value="/images/admin.jpg"/>
+            <column name="description" value="System Administrator"/>
+            <column name="rating" value="5.0"/>
+        </insert>
+
+        <!-- Post Types -->
+        <insert tableName="post_type_table">
+            <column name="post_type_id" value="1"/>
+            <column name="name" value="Question"/>
+        </insert>
+        <insert tableName="post_type_table">
+            <column name="post_type_id" value="2"/>
+            <column name="name" value="Answer"/>
+        </insert>
+        <insert tableName="post_type_table">
+            <column name="post_type_id" value="3"/>
+            <column name="name" value="Article"/>
+        </insert>
+
+        <!-- Posts -->
+        <insert tableName="post_table">
+            <column name="post_id" value="1"/>
+            <column name="content" value="What are the best resources to learn SQL?"/>
+            <column name="child_id" value="null"/>
+            <column name="user_id" value="1"/>
+            <column name="media_link" value="null"/>
+            <column name="creation_date" value="2025-01-15"/>
+            <column name="views_count" value="45"/>
+            <column name="post_type_id" value="1"/>
+        </insert>
+        <insert tableName="post_table">
+            <column name="post_id" value="2"/>
+            <column name="content" value="I recommend starting with W3Schools and then moving on to more advanced resources like PostgreSQL documentation."/>
+            <column name="child_id" value="1"/>
+            <column name="user_id" value="2"/>
+            <column name="media_link" value="null"/>
+            <column name="creation_date" value="2025-01-16"/>
+            <column name="views_count" value="30"/>
+            <column name="post_type_id" value="2"/>
+        </insert>
+        <insert tableName="post_table">
+            <column name="post_id" value="3"/>
+            <column name="content" value="An Introduction to Database Design Principles"/>
+            <column name="child_id" value="null"/>
+            <column name="user_id" value="2"/>
+            <column name="media_link" value="/images/db-design.jpg"/>
+            <column name="creation_date" value="2025-01-10"/>
+            <column name="views_count" value="122"/>
+            <column name="post_type_id" value="3"/>
+        </insert>
+
+        <!-- Tag Types -->
+        <insert tableName="tag_type_table">
+            <column name="tag_type_id" value="1"/>
+            <column name="name" value="Subject"/>
+        </insert>
+        <insert tableName="tag_type_table">
+            <column name="tag_type_id" value="2"/>
+            <column name="name" value="Technology"/>
+        </insert>
+        <insert tableName="tag_type_table">
+            <column name="tag_type_id" value="3"/>
+            <column name="name" value="Course"/>
+        </insert>
+
+        <!-- Tags -->
+        <insert tableName="tag_table">
+            <column name="tag_id" value="1"/>
+            <column name="name" value="Database"/>
+            <column name="tag_type_id" value="1"/>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="tag_id" value="2"/>
+            <column name="name" value="SQL"/>
+            <column name="tag_type_id" value="2"/>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="tag_id" value="3"/>
+            <column name="name" value="PostgreSQL"/>
+            <column name="tag_type_id" value="2"/>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="tag_id" value="4"/>
+            <column name="name" value="Database Design"/>
+            <column name="tag_type_id" value="3"/>
+        </insert>
+        <insert tableName="tag_table">
+            <column name="tag_id" value="5"/>
+            <column name="name" value="Java"/>
+            <column name="tag_type_id" value="2"/>
+        </insert>
+
+        <!-- Tags for Posts -->
+        <insert tableName="tags_for_post_table">
+            <column name="id" value="1"/>
+            <column name="post_id" value="1"/>
+            <column name="tag_id" value="1"/>
+        </insert>
+        <insert tableName="tags_for_post_table">
+            <column name="id" value="2"/>
+            <column name="post_id" value="1"/>
+            <column name="tag_id" value="2"/>
+        </insert>
+        <insert tableName="tags_for_post_table">
+            <column name="id" value="3"/>
+            <column name="post_id" value="3"/>
+            <column name="tag_id" value="1"/>
+        </insert>
+        <insert tableName="tags_for_post_table">
+            <column name="id" value="4"/>
+            <column name="post_id" value="3"/>
+            <column name="tag_id" value="4"/>
+        </insert>
+
+        <!-- Tags for Users -->
+        <insert tableName="tags_for_user_table">
+            <column name="id" value="1"/>
+            <column name="user_id" value="1"/>
+            <column name="tag_id" value="5"/>
+        </insert>
+        <insert tableName="tags_for_user_table">
+            <column name="id" value="2"/>
+            <column name="user_id" value="1"/>
+            <column name="tag_id" value="2"/>
+        </insert>
+        <insert tableName="tags_for_user_table">
+            <column name="id" value="3"/>
+            <column name="user_id" value="2"/>
+            <column name="tag_id" value="1"/>
+        </insert>
+
+        <!-- Likes -->
+        <insert tableName="like_table">
+            <column name="like_id" value="1"/>
+            <column name="post_id" value="3"/>
+            <column name="user_id" value="1"/>
+        </insert>
+        <insert tableName="like_table">
+            <column name="like_id" value="2"/>
+            <column name="post_id" value="2"/>
+            <column name="user_id" value="1"/>
+        </insert>
+        <insert tableName="like_table">
+            <column name="like_id" value="3"/>
+            <column name="post_id" value="3"/>
+            <column name="user_id" value="3"/>
+        </insert>
+
+        <!-- Education Types -->
+        <insert tableName="education_type_table">
+            <column name="education_type_id" value="1"/>
+            <column name="name" value="Bachelor"/>
+        </insert>
+        <insert tableName="education_type_table">
+            <column name="education_type_id" value="2"/>
+            <column name="name" value="Master"/>
+        </insert>
+        <insert tableName="education_type_table">
+            <column name="education_type_id" value="3"/>
+            <column name="name" value="PhD"/>
+        </insert>
+
+        <!-- Education Programs -->
+        <insert tableName="education_program_table">
+            <column name="program_id" value="1"/>
+            <column name="user_id" value="2"/>
+            <column name="code" value="101"/>
+            <column name="name" value="Computer Science"/>
+            <column name="time" value="4"/>
+            <column name="education_type_id" value="1"/>
+            <column name="description" value="Bachelor program in Computer Science"/>
+            <column name="quota" value="100"/>
+        </insert>
+        <insert tableName="education_program_table">
+            <column name="program_id" value="2"/>
+            <column name="user_id" value="2"/>
+            <column name="code" value="201"/>
+            <column name="name" value="Data Science"/>
+            <column name="time" value="2"/>
+            <column name="education_type_id" value="2"/>
+            <column name="description" value="Master program in Data Science"/>
+            <column name="quota" value="50"/>
+        </insert>
+
+        <!-- Subjects -->
+        <insert tableName="subject_table">
+            <column name="subject_id" value="1"/>
+            <column name="name" value="Database Systems"/>
+            <column name="description" value="Introduction to Database Systems and SQL"/>
+        </insert>
+        <insert tableName="subject_table">
+            <column name="subject_id" value="2"/>
+            <column name="name" value="Algorithms"/>
+            <column name="description" value="Algorithms and Data Structures"/>
+        </insert>
+        <insert tableName="subject_table">
+            <column name="subject_id" value="3"/>
+            <column name="name" value="Machine Learning"/>
+            <column name="description" value="Introduction to Machine Learning"/>
+        </insert>
+
+        <!-- Learning Plans -->
+        <insert tableName="learning_plan_table">
+            <column name="id" value="1"/>
+            <column name="program_id" value="1"/>
+            <column name="subject_id" value="1"/>
+            <column name="hours" value="120"/>
+            <column name="semester" value="3"/>
+        </insert>
+        <insert tableName="learning_plan_table">
+            <column name="id" value="2"/>
+            <column name="program_id" value="1"/>
+            <column name="subject_id" value="2"/>
+            <column name="hours" value="160"/>
+            <column name="semester" value="2"/>
+        </insert>
+        <insert tableName="learning_plan_table">
+            <column name="id" value="3"/>
+            <column name="program_id" value="2"/>
+            <column name="subject_id" value="3"/>
+            <column name="hours" value="180"/>
+            <column name="semester" value="1"/>
+        </insert>
+
+        <!-- Change Requests -->
+        <insert tableName="change_request_table">
+            <column name="change_request_id" value="1"/>
+            <column name="description" value="Request to add more hours for Database Systems"/>
+            <column name="from_id" value="1"/>
+            <column name="program_id" value="1"/>
+        </insert>
+        <insert tableName="change_request_table">
+            <column name="change_request_id" value="2"/>
+            <column name="description" value="Request to move Machine Learning to semester 2"/>
+            <column name="from_id" value="2"/>
+            <column name="program_id" value="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
