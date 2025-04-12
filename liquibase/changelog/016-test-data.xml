@@ -24,7 +24,7 @@
         <insert tableName="user_table">
             <column name="user_id" value="1"/>
             <column name="login" value="john.doe"/>
-            <column name="password" value="password123"/>
+            <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
             <column name="type_id" value="1"/>
             <column name="name" value="John Doe"/>
             <column name="image_link" value="/images/john.jpg"/>
@@ -34,7 +34,7 @@
         <insert tableName="user_table">
             <column name="user_id" value="2"/>
             <column name="login" value="jane.smith"/>
-            <column name="password" value="password456"/>
+            <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
             <column name="type_id" value="2"/>
             <column name="name" value="Jane Smith"/>
             <column name="image_link" value="/images/jane.jpg"/>
@@ -44,7 +44,7 @@
         <insert tableName="user_table">
             <column name="user_id" value="3"/>
             <column name="login" value="admin.user"/>
-            <column name="password" value="admin123"/>
+            <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
             <column name="type_id" value="3"/>
             <column name="name" value="Admin User"/>
             <column name="image_link" value="/images/admin.jpg"/>

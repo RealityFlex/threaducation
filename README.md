@@ -11,3 +11,7 @@
 для своих - картинка схемы текущей бд
 ![alt text](https://github.com/RealityFlex/threaducation/blob/main/etc/database_for_hack.png)
 
+
+##### Тестовые данные
+логин = jane.smith
+пароль = password456
