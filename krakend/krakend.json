@@ -1,0 +1,70 @@
+{
+    "$schema": "https://www.krakend.io/schema/krakend.json",
+    "version": 3,
+    "timeout": "15s",  
+    "cache_ttl": "300s",
+    "name": "KrakenD - API Gateway",
+    "port": 8090,
+    "extra_config": {
+      "router": {
+         "return_error_msg": true
+      }
+    },
+    "output_encoding": "json",
+      "endpoints":[       
+      {
+        "endpoint": "/login",
+        "method": "POST",
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "url_pattern": "/realms/xd/protocol/openid-connect/token",
+            "method": "POST",
+            "host": ["http://host.docker.internal:8081"],
+            "encoding": "no-op"
+          }
+        ]
+      },
+      { 
+        "endpoint": "/register",
+        "method": "POST",
+        "input_headers": ["Content-Type"],
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "host": ["http://host.docker.internal:8000"],
+            "url_pattern": "/register",
+            "method": "POST",
+            "encoding": "no-op"
+          }
+        ]
+      }, {
+        "endpoint": "/docs",
+        "method": "GET",
+        "input_headers": ["Content-Type"],
+        "output_encoding": "no-op",
+        "extra_config": {
+        "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/xd/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "operation_debug": true,
+            "roles_key": "threaducation_types.roles",
+            "roles": ["Teacher"],
+            "roles_key_is_nested": true,
+            "propagate_claims": [
+              ["sub", "x-user"]
+            ]
+        }
+      },
+        "backend": [
+          {
+            "host": ["http://host.docker.internal:8000"],
+            "url_pattern": "/docs",
+            "method": "GET",
+            "encoding": "no-op"
+          }
+        ]
+      }      
+    ]
+    }

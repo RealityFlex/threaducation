@@ -9,47 +9,43 @@
         <!-- Profile Types -->
         <insert tableName="profile_type_table">
             <column name="type_id" value="1"/>
-            <column name="name" value="Student"/>
+            <column name="name" value="EducationWorker"/>
         </insert>
         <insert tableName="profile_type_table">
             <column name="type_id" value="2"/>
-            <column name="name" value="Teacher"/>
-        </insert>
-        <insert tableName="profile_type_table">
-            <column name="type_id" value="3"/>
-            <column name="name" value="Admin"/>
+            <column name="name" value="Student"/>
         </insert>
 
-        <!-- Users -->
+        <!-- Users пароли при вводе: password 123, password 456, password789-->
         <insert tableName="user_table">
             <column name="user_id" value="1"/>
-            <column name="login" value="john.doe"/>
-            <column name="password" value="password123"/>
+            <column name="login" value="mirea@mirea.ru"/>
+            <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
             <column name="type_id" value="1"/>
-            <column name="name" value="John Doe"/>
+            <column name="name" value="РТУ МИРЭА"/>
             <column name="image_link" value="/images/john.jpg"/>
-            <column name="description" value="Computer Science student"/>
-            <column name="rating" value="4.5"/>
+            <column name="description" value="Ниче такой уник"/>
+            <column name="rating" value="10.0"/>
         </insert>
         <insert tableName="user_table">
             <column name="user_id" value="2"/>
-            <column name="login" value="jane.smith"/>
-            <column name="password" value="password456"/>
+            <column name="login" value="terrifyingant@yandex.ru"/>
+            <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
             <column name="type_id" value="2"/>
-            <column name="name" value="Jane Smith"/>
+            <column name="name" value="Шендяпин Артём"/>
             <column name="image_link" value="/images/jane.jpg"/>
-            <column name="description" value="Math Professor"/>
-            <column name="rating" value="4.8"/>
+            <column name="description" value="Просто чилловый парень"/>
+            <column name="rating" value="6.3"/>
         </insert>
         <insert tableName="user_table">
             <column name="user_id" value="3"/>
-            <column name="login" value="admin.user"/>
-            <column name="password" value="admin123"/>
-            <column name="type_id" value="3"/>
-            <column name="name" value="Admin User"/>
+            <column name="login" value="crocodiloBombordino@yandex.ru"/>
+            <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
+            <column name="type_id" value="2"/>
+            <column name="name" value="Институт Информационных Технологий"/>
             <column name="image_link" value="/images/admin.jpg"/>
-            <column name="description" value="System Administrator"/>
-            <column name="rating" value="5.0"/>
+            <column name="description" value="Институт информационных технологий предоставляет офигеть сколько возможностей нашим дорогим студентам"/>
+            <column name="rating" value="10.0"/>
         </insert>
 
         <!-- Post Types -->
@@ -101,15 +97,15 @@
         <!-- Tag Types -->
         <insert tableName="tag_type_table">
             <column name="tag_type_id" value="1"/>
-            <column name="name" value="Subject"/>
+            <column name="name" value="Command"/>
         </insert>
         <insert tableName="tag_type_table">
             <column name="tag_type_id" value="2"/>
-            <column name="name" value="Technology"/>
+            <column name="name" value="User"/>
         </insert>
         <insert tableName="tag_type_table">
             <column name="tag_type_id" value="3"/>
-            <column name="name" value="Course"/>
+            <column name="name" value="Shadow"/>
         </insert>
 
         <!-- Tags -->
@@ -171,11 +167,6 @@
             <column name="id" value="2"/>
             <column name="user_id" value="1"/>
             <column name="tag_id" value="2"/>
-        </insert>
-        <insert tableName="tags_for_user_table">
-            <column name="id" value="3"/>
-            <column name="user_id" value="2"/>
-            <column name="tag_id" value="1"/>
         </insert>
 
         <!-- Likes -->

@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:15
-    container_name: education_db
+    build:
+      dockerfile: postgres/Dockerfile
+    container_name: threaducation_db
     environment:
       POSTGRES_DB: education_db
       POSTGRES_USER: threaducation_user
@@ -11,15 +12,17 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - ./postgres/postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U threaducation_user -d education_db"]
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - threaducation_network
 
   liquibase:
-    container_name: liquibase
+    container_name: threaducation_liquibase
     image: liquibase/liquibase:4.23
     depends_on:
       postgres:
@@ -32,11 +35,50 @@ services:
       --username=threaducation_user
       --password=threads_t0_masses
       update
+    networks:
+      - threaducation_network
+  krakend:
+    container_name: threaducation_krakend
+    image: devopsfaith/krakend:latest
+    command: run -d -c /etc/krakend/krakend.json
+    restart: always
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./krakend:/etc/krakend
+    networks:
+      - threaducation_network
+  keycloak:
+    container_name: threaducation_keycloak
+    restart: always
+    environment:
+      - KEYCLOAK_ADMIN=threaducation_user
+      - KEYCLOAK_ADMIN_PASSWORD=threads_t0_masses
+      - KC_DB=postgres
+      - KEYCLOAK_DB=education_db
+      - KC_DB_URL=jdbc:postgresql://postgres:5432/education_db
+      - KC_DB_USERNAME=threaducation_user
+      - KC_DB_PASSWORD=threads_t0_masses
+      - KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/realm-export.json 
+    build:
+      dockerfile: keycloak/Dockerfile
+    ports:
+      - "8081:8080"
+      - "8403:8403"
+    command: start-dev --import-realm
+    volumes:
+      - ./keycloak/container_data:/opt/jboss/keycloak/imports
+    depends_on:
+      - postgres
+      - liquibase
+      - krakend
+    networks:
+      - threaducation_network
 
   profile-microservice:
     build:
       dockerfile: profile/Dockerfile
-    container_name: education_profile
+    container_name: threaducation_profile
     depends_on:
       liquibase:
         condition: service_completed_successfully
@@ -45,6 +87,12 @@ services:
     environment:
       - DATABASE_URL=postgresql://threaducation_user:threads_t0_masses@postgres:5432/education_db
     command: uvicorn main:app --host 0.0.0.0 --reload
-
+    networks:
+      - threaducation_network
+      
 volumes:
   postgres_data:
+
+networks:
+    threaducation_network:
+        driver: bridge

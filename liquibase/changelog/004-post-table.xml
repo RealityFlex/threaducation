@@ -22,7 +22,7 @@
             <column name="media_link" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
-            <column name="creation_date" type="date">
+            <column name="creation_date" type="datetime">
                 <constraints nullable="false"/>
             </column>
             <column name="views_count" type="bigint">
