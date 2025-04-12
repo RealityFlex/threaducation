@@ -43,10 +43,24 @@
         "method": "GET",
         "input_headers": ["Content-Type"],
         "output_encoding": "no-op",
+        "extra_config": {
+        "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/xd/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "operation_debug": true,
+            "roles_key": "threaducation_types.roles",
+            "roles": ["Teacher"],
+            "roles_key_is_nested": true,
+            "propagate_claims": [
+              ["sub", "x-user"]
+            ]
+        }
+      },
         "backend": [
           {
             "host": ["http://host.docker.internal:8000"],
-            "url_pattern": "/register",
+            "url_pattern": "/docs",
             "method": "GET",
             "encoding": "no-op"
           }

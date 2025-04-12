@@ -4,7 +4,7 @@ services:
   postgres:
     build:
       dockerfile: postgres/Dockerfile
-    container_name: education_db
+    container_name: threaducation_db
     environment:
       POSTGRES_DB: education_db
       POSTGRES_USER: threaducation_user
@@ -18,9 +18,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - threaducation_network
 
   liquibase:
-    container_name: liquibase
+    container_name: threaducation_liquibase
     image: liquibase/liquibase:4.23
     depends_on:
       postgres:
@@ -33,9 +35,10 @@ services:
       --username=threaducation_user
       --password=threads_t0_masses
       update
-
+    networks:
+      - threaducation_network
   krakend:
-    container_name: ch_krakend
+    container_name: threaducation_krakend
     image: devopsfaith/krakend:latest
     command: run -d -c /etc/krakend/krakend.json
     restart: always
@@ -43,9 +46,10 @@ services:
       - "8090:8090"
     volumes:
       - ./krakend:/etc/krakend
-
+    networks:
+      - threaducation_network
   keycloak:
-    container_name: ch_keycloak
+    container_name: threaducation_keycloak
     restart: always
     environment:
       - KEYCLOAK_ADMIN=threaducation_user
@@ -68,7 +72,8 @@ services:
       - postgres
       - liquibase
       - krakend
-
+    networks:
+      - threaducation_network
 
   profile-microservice:
     build:
@@ -82,6 +87,12 @@ services:
     environment:
       - DATABASE_URL=postgresql://threaducation_user:threads_t0_masses@postgres:5432/education_db
     command: uvicorn main:app --host 0.0.0.0 --reload
-
+    networks:
+      - threaducation_network
+      
 volumes:
   postgres_data:
+
+networks:
+    threaducation_network:
+        driver: bridge
