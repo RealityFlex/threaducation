@@ -26,4 +26,20 @@
 - Нужно нажать на "Select file" и выбрать файл "realm-export.json", который лежит в папке "keycloak"
 - После этого необходимо нажать на кнопку "create"
 
-оно работает, просто не на чем показать)
+На текущий момент, чтобы получить токен авторизации через postman нужно:
+![image](https://github.com/user-attachments/assets/380ff7e1-419d-40ef-8d9b-47e7142cfab3)
+
+1) повторить все, что на скрине
+
+    1.1) Auth URL - http://localhost:8081/realms/xd/protocol/openid-connect/auth
+   
+    1.2) Access Token URL - http://localhost:8081/realms/xd/protocol/openid-connect/token
+   
+    1.3) Client ID - auth_client
+   
+    1.4) Client Secret - vQkfDyPGu5nRhuOEgkUuvWHbqplfZND5
+
+3) Промотать вниз и нажать на кнопку "Get new Access Token"
+4) В окне авторизации ввести данные логина и пароля из тестовых данных
+5) нажать авторизироваться
+6) Ура! Access token получен! Что с ним делать решать только тебе
