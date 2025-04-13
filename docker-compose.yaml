@@ -15,7 +15,7 @@ services:
       - ./postgres/postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U threaducation_user -d education_db"]
-      interval: 5s
+      interval: 20s
       timeout: 5s
       retries: 5
     networks:

@@ -41,7 +41,7 @@
             <column name="user_id" value="3"/>
             <column name="login" value="crocodiloBombordino@yandex.ru"/>
             <column name="password" value="0c6f6845bb8c62b778e9147c272ac4b5bdb9ae71"/>
-            <column name="type_id" value="2"/>
+            <column name="type_id" value="1"/>
             <column name="name" value="Институт Информационных Технологий"/>
             <column name="image_link" value="/images/admin.jpg"/>
             <column name="description" value="Институт информационных технологий предоставляет офигеть сколько возможностей нашим дорогим студентам"/>

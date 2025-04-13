@@ -13,58 +13,83 @@
     "output_encoding": "json",
       "endpoints":[       
       {
-        "endpoint": "/login",
-        "method": "POST",
-        "output_encoding": "no-op",
-        "backend": [
-          {
-            "url_pattern": "/realms/xd/protocol/openid-connect/token",
-            "method": "POST",
-            "host": ["http://host.docker.internal:8081"],
-            "encoding": "no-op"
-          }
-        ]
-      },
-      { 
-        "endpoint": "/register",
-        "method": "POST",
-        "input_headers": ["Content-Type"],
-        "output_encoding": "no-op",
-        "backend": [
-          {
-            "host": ["http://host.docker.internal:8000"],
-            "url_pattern": "/register",
-            "method": "POST",
-            "encoding": "no-op"
-          }
-        ]
-      }, {
         "endpoint": "/docs",
         "method": "GET",
         "input_headers": ["Content-Type"],
         "output_encoding": "no-op",
-        "extra_config": {
-        "auth/validator": {
-            "alg": "RS256",
-            "jwk_url": "http://keycloak:8080/realms/xd/protocol/openid-connect/certs",
-            "disable_jwk_security": true,
-            "operation_debug": true,
-            "roles_key": "threaducation_types.roles",
-            "roles": ["Teacher"],
-            "roles_key_is_nested": true,
-            "propagate_claims": [
-              ["sub", "x-user"]
-            ]
-        }
-      },
         "backend": [
           {
-            "host": ["http://host.docker.internal:8000"],
+            "host": ["http://profile-microservice:8000"],
             "url_pattern": "/docs",
             "method": "GET",
             "encoding": "no-op"
           }
         ]
-      }      
+      },
+      {
+        "endpoint": "/api/health",
+        "method": "GET",
+        "output_encoding": "json",
+        "backend": [
+          {
+            "url_pattern": "/health",
+            "host": ["http://profile-microservice:8000"],
+            "encoding": "json"
+          }
+        ]
+      },
+      {
+        "endpoint": "/api/users/me",
+        "method": "GET",
+        "input_headers": ["*"],
+        "input_query_strings": ["*"],
+        "output_encoding": "no-op",
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/xd/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "operation_debug": true,
+            "propagate_claims": [
+              ["sub", "x-user"]
+            ]
+          }
+        },
+        "backend": [
+          {
+            "url_pattern": "/users/me",
+            "host": ["http://profile-microservice:8000"],
+            "method": "GET"
+          }
+        ]
+      },
+      {
+        "endpoint": "/api/tags",
+        "method": "GET",
+        "input_headers": ["*"],
+        "input_query_strings": ["*"],
+        "output_encoding": "no-op",
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "jwk_url": "http://keycloak:8080/realms/xd/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "operation_debug": true,
+            "roles_key": "threaducation_types.roles",
+            "roles": ["EducationWorker"],
+            "roles_key_is_nested": true,
+            "propagate_claims": [
+              ["sub", "x-user"]
+            ]
+          }
+        },
+        "backend": [
+          {
+            "url_pattern": "/tags/",
+            "host": ["http://profile-microservice:8000"],
+            "method": "GET"
+          }
+        ]
+      }            
     ]
     }

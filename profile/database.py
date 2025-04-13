@@ -2,13 +2,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from core.config import settings
+SQLALCHEMY_DATABASE_URL = "postgresql://threaducation_user:threads_t0_masses@postgres:5432/education_db"
 
-# Create SQLAlchemy engine
-engine = create_engine(settings.DATABASE_URL)
-
-# Create session factory
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Create base class for SQLAlchemy models
 Base = declarative_base()
+
+# Dependency to get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
