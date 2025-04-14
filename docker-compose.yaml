@@ -47,7 +47,9 @@ services:
     volumes:
       - ./krakend:/etc/krakend
     networks:
-      - threaducation_network
+        threaducation_network:
+            ipv4_address: 10.147.19.181
+    
   keycloak:
     container_name: threaducation_keycloak
     restart: always
@@ -89,6 +91,21 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --reload
     networks:
       - threaducation_network
+
+  auth-microservice:
+    build:
+      dockerfile: auth/Dockerfile
+    container_name: threaducation_auth
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql://threaducation_user:threads_t0_masses@postgres:5432/education_db
+    command: uvicorn main:app --host 0.0.0.0 --reload
+    networks:
+      - threaducation_network
       
 volumes:
   postgres_data:
@@ -96,3 +113,6 @@ volumes:
 networks:
     threaducation_network:
         driver: bridge
+        ipam:
+            config:
+              - subnet: 10.147.19.0/24

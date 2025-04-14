@@ -39,6 +39,19 @@
         ]
       },
       {
+        "endpoint": "/login",
+        "method": "POST",
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "url_pattern": "/realms/xd/protocol/openid-connect/token",
+            "method": "POST",
+            "host": ["http://keycloak:8080"],
+            "encoding": "no-op"
+          }
+        ]
+      },
+      {
         "endpoint": "/api/users/me",
         "method": "GET",
         "input_headers": ["*"],
