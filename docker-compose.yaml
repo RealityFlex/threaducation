@@ -48,7 +48,7 @@ services:
       - ./krakend:/etc/krakend
     networks:
         threaducation_network:
-            ipv4_address: 10.147.19.181
+            ipv4_address: 10.147.19.91
     
   keycloak:
     container_name: threaducation_keycloak
