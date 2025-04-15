@@ -1,10 +1,21 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 class UserRequestDto(BaseModel):
     login: str
     password: str
     full_name: str
+
+class UserRegistrationDto(BaseModel):
+    fullName: str
+    login: str
+    password: str
+    university: str
+    faculty: str
+    department: str
+    course: str
+    interests: List[str]
+    activities: List[str]
 
 class TokensDto(BaseModel):
     access_token: str
@@ -20,8 +31,9 @@ class TokensResponseDto(BaseModel):
 class UserResponse(BaseModel):
     id: int
     login: str
-    role: str
-    full_name: str
+    name: str
+    description: Optional[str]
+    rating: float
     
     class Config:
         orm_mode = True
