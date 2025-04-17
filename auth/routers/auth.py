@@ -54,7 +54,7 @@ async def register_user(user_data: UserRegistrationDto, db: Session = Depends(ge
         )
     
     # Get profile type ID for student (assuming it exists)
-    profile_type_id = 1  # Assuming 1 is for students
+    profile_type_id = 2  # Assuming 1 is for students
     
     # Create new user
     user_id = generate_id()

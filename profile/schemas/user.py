@@ -1,5 +1,6 @@
 # app/schemas/user.py
 from typing import Optional, List
+from schemas.post import PostDto
 from pydantic import BaseModel
 
 class ProfileTypeBase(BaseModel):
@@ -38,5 +39,18 @@ class User(UserBase):
 class UserDetail(User):
     profile_type: ProfileType
 
+    class Config:
+        orm_mode = True
+
+class UserMeDto(BaseModel):
+    login: Optional[str] = None
+    name: Optional[str] = None
+    typeId: Optional[int] = None
+    imageLink: Optional[str] = None
+    description: Optional[str] = None
+    userId: Optional[int] = None
+    rating: Optional[float] = None
+    posts: Optional[List[PostDto]] = []
+    
     class Config:
         orm_mode = True

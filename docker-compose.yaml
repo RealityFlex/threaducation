@@ -103,7 +103,7 @@ services:
       - "8001:8001"
     environment:
       - DATABASE_URL=postgresql://threaducation_user:threads_t0_masses@postgres:5432/education_db
-    command: uvicorn main:app --host 0.0.0.0 --reload
+    command: uvicorn main:app --host 0.0.0.0 --reload --port 8001
     networks:
       - threaducation_network
       

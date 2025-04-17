@@ -18,9 +18,14 @@ class User(Base):
 
     # Relationships
     profile_type = relationship("ProfileType", back_populates="users")
-    tags = relationship("TagForUser", back_populates="user")
     education_programs = relationship("EducationProgram", back_populates="user")
     change_requests = relationship("ChangeRequest", back_populates="from_user")
+
+    posts = relationship("Post", back_populates="user")
+    tags = relationship("TagForUser", back_populates="user")
+    likes = relationship("Like", back_populates="user")
+# To:
+
 
 class ProfileType(Base):
     __tablename__ = "profile_type_table"

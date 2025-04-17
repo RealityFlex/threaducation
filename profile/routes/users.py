@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from database import get_db
-from schemas.user import User, UserCreate, UserDetail, UserLogin, ProfileType, ProfileTypeCreate
+from schemas.user import User, UserCreate, UserDetail, UserLogin, ProfileType, ProfileTypeCreate, UserMeDto
 from services import user_service
 from utils.auth import get_current_user, TokenData
 
@@ -13,34 +13,13 @@ router = APIRouter(
     tags=["users"]
 )
 
-@router.post("/register", response_model=User)
-def register_user(user: UserCreate, db: Session = Depends(get_db)):
-    db_user = user_service.get_user_by_login(db, login=user.login)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Login already registered")
-    return user_service.create_user(db=db, user=user)
-
-@router.post("/login")
-def login_user(user_credentials: UserLogin, db: Session = Depends(get_db)):
-    user = user_service.authenticate_user(db, user_credentials.login, user_credentials.password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect login or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    # In a real application, you'd generate a JWT token here
-    # But since we're using Keycloak for authentication, we'll just return user info
-    return {"message": "Login successful, use Keycloak for token"}
-
-@router.get("/me", response_model=User)
+@router.get("/me", response_model=UserMeDto)
 def read_users_me(x_user: str = Header(..., alias="x-user"), db: Session = Depends(get_db)):
     user_id = int(x_user.split(":")[-1])
-    user = user_service.get_user(db, user_id)
-    print(user_id)
-    if user is None:
+    user_with_posts = user_service.get_user_with_posts(db, user_id)
+    if user_with_posts is None:
         raise HTTPException(status_code=404, detail="User not found")
-    return user
+    return user_with_posts
 
 @router.get("/", response_model=List[User])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

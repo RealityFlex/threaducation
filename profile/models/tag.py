@@ -13,6 +13,7 @@ class Tag(Base):
 
     # Relationships
     user_tags = relationship("TagForUser", back_populates="tag")
+    post_tags = relationship("TagsForPost", back_populates="tag")
 
 class TagForUser(Base):
     __tablename__ = "tags_for_user_table"
